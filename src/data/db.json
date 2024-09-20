@@ -1,0 +1,75 @@
+{
+  "contas": [
+    {
+      "id": "1",
+      "agencia": "1234",
+      "conta": "56789",
+      "digito": "0",
+      "primeiroNome": "João",
+      "ultimoNome": "Silva",
+      "cpfOuCnpj": "123.456.789-00",
+      "email": "joao.silva@email.com",
+      "senha": "senha123",
+      "primeiroAcesso": false,
+      "saldo": 1500
+    },
+    {
+      "id": "2",
+      "agencia": "5678",
+      "conta": "12345",
+      "digito": "1",
+      "primeiroNome": "Maria",
+      "ultimoNome": "Oliveira",
+      "cpfOuCnpj": "987.654.321-00",
+      "email": "maria.oliveira@email.com",
+      "senha": "senha456",
+      "primeiroAcesso": true,
+      "saldo": 2000
+    },
+    {
+      "id": "3",
+      "agencia": "4321",
+      "conta": "67890",
+      "digito": "2",
+      "primeiroNome": "Carlos",
+      "ultimoNome": "Souza",
+      "cpfOuCnpj": "321.654.987-00",
+      "email": "carlos.souza@email.com",
+      "senha": "senha789",
+      "primeiroAcesso": false,
+      "saldo": 500
+    }
+  ],
+  "transferencias": [
+    {
+      "id": "1",
+      "idContaRemetente": 1,
+      "idContaDestinatario": 2,
+      "tipoTransacao": "TED",
+      "valor": 300,
+      "dataTransacao": "2023-09-15T10:30:00Z",
+      "saldoRemetente": 1200,
+      "saldoDestinatario": 2300
+    },
+    {
+      "id": "2",
+      "idContaRemetente": 2,
+      "idContaDestinatario": 1,
+      "tipoTransacao": "PIX",
+      "valor": 500,
+      "dataTransacao": "2023-09-16T14:45:00Z",
+      "saldoRemetente": 1800,
+      "saldoDestinatario": 1700
+    },
+    {
+      "id": "3",
+      "idContaRemetente": 3,
+      "idContaDestinatario": 1,
+      "tipoTransacao": "TED",
+      "valor": 100,
+      "dataTransacao": "2023-09-17T09:00:00Z",
+      "saldoRemetente": 400,
+      "saldoDestinatario": 1600
+    }
+  ]
+}
