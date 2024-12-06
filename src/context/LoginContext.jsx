@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { jwtVerify, SignJWT } from 'jose';
 
 export const LoginContext = createContext();
@@ -8,15 +8,19 @@ export const LoginProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    console.log('teste')
-    const tokenSalvo = localStorage.getItem('token');
-    const contaSalva = localStorage.getItem('conta');
+    const inicializarLogin = async () => {
+      console.log('teste')
+      const tokenSalvo = localStorage.getItem('token');
+      const contaSalva = localStorage.getItem('conta');
 
-    if (tokenSalvo && contaSalva) {
-      setToken(tokenSalvo);
-      setConta(JSON.parse(contaSalva));
-    }
-  }, []);
+      if (tokenSalvo && contaSalva) {
+        setToken(tokenSalvo);
+        setConta(JSON.parse(contaSalva));
+      }
+    };
+
+    inicializarLogin();
+  }, [token]);
 
   const login = async (dadosConta) => {
     const dataExpiracao = new Date();
@@ -34,19 +38,21 @@ export const LoginProvider = ({ children }) => {
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime(dataExpiracao)
       .sign(new TextEncoder().encode(import.meta.env.VITE_APP_SECRET));
+    
 
-    setConta(dadosConta);
-    setToken(tokenJwt);
     localStorage.setItem('token', tokenJwt);
     localStorage.setItem('conta', JSON.stringify(dadosConta));
+    setConta(dadosConta);
+    setToken(tokenJwt);
   };
 
   const loginValido = async () => {
 
+    const token = localStorage.getItem('token'); //PQ NÃO CONSIGO PEGAR DO PROPRIO CONTEXTO?
+
     if (!token)
       throw new Error('Usuário não autenticado')
 
-    console.log(token);
 
     try {
       const result = await jwtVerify(
@@ -71,11 +77,15 @@ export const LoginProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setConta(null);
-    setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('conta');
+    console.log("entrei");
+    setConta(null);
+    setToken(null);
+
   };
+  console.log("children")
+  console.log(children)
 
   return (
     <LoginContext.Provider value={{ conta, token, login, loginValido, logout }}>
