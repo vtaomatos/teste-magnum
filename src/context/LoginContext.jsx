@@ -82,10 +82,7 @@ export const LoginProvider = ({ children }) => {
     console.log("entrei");
     setConta(null);
     setToken(null);
-
   };
-  console.log("children")
-  console.log(children)
 
   return (
     <LoginContext.Provider value={{ conta, token, login, loginValido, logout }}>

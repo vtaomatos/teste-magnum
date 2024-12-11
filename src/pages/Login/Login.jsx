@@ -24,7 +24,7 @@ function Login() {
         throw new Error('Dados vazios');
       }
 
-      login(userData);
+      await login(userData);
       navigate('/home');
     } catch (err) {
       setError('E-mail ou senha inválidos');
