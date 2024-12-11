@@ -9,7 +9,6 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     const inicializarLogin = async () => {
-      console.log('teste')
       const tokenSalvo = localStorage.getItem('token');
       const contaSalva = localStorage.getItem('conta');
 
@@ -25,8 +24,6 @@ export const LoginProvider = ({ children }) => {
   const login = async (dadosConta) => {
     const dataExpiracao = new Date();
     dataExpiracao.setMinutes(dataExpiracao.getMinutes() + 2);
-
-    console.log(dataExpiracao);
   
     const tokenJwt = await new SignJWT({
       agencia: dadosConta.agencia,
@@ -60,18 +57,9 @@ export const LoginProvider = ({ children }) => {
         new TextEncoder().encode(import.meta.env.VITE_APP_SECRET),
       );
 
-      console.log(result);
-      console.log(new Date());
-      console.log(new Date(result.payload.exp));
-
-      // console.log(new Date(payload.exp));
-      // console.log(new Date() < new Date(payload.exp));
-
-
       return true;
 
     } catch (err) {
-      console.log('Erro ao verificar o token:', err);
       throw new Error('Token inválido ou expirado');
     }
   };
@@ -79,7 +67,6 @@ export const LoginProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('conta');
-    console.log("entrei");
     setConta(null);
     setToken(null);
   };

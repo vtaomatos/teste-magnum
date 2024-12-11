@@ -6,11 +6,7 @@ export const getUserlogin = async (agencia, conta, digito, senha) => {
     const link = `${API_URL}/?agencia=${encodeURIComponent(agencia)}&conta=${encodeURIComponent(conta)}&digito=${encodeURIComponent(digito)}&senha=${encodeURIComponent(senha)}`;
 
     const response = await axios.get(link);
-
-    console.log(link);
-    console.log(response);
-
-
+    
     switch (response.data.length)
     {
       case 0:

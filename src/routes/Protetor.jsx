@@ -11,11 +11,8 @@ const Protetor = ({ children }) => {
     const verificarLogin = async () => {
       try {
         const valido = await loginValido()
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        console.log(valido);
         setIsValid(valido);
       } catch (err) {
-        console.log(err);
         setIsValid(false);
       } finally {
         setIsLoading(false); // Finaliza o carregamento
