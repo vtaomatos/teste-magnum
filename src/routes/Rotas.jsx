@@ -23,8 +23,16 @@ function Rotas() {
                   <Home />
                 </Protetor>
             } />
-            <Route path="/extrato" element={<Extrato />} />
-            <Route path="/transferencia" element={<Transferencia />} />
+            <Route path="/extrato" element={
+              <Protetor>
+                <Extrato />
+              </Protetor>
+            } />
+            <Route path="/transferencia" element={
+              <Protetor>
+                <Transferencia />
+              </Protetor>
+            } />
             <Route path="/logout" element={<Logout />} />
             <Route path="/*" element={<PaginaNaoEncontrada />} />
           </Routes>
