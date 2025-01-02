@@ -36,9 +36,10 @@ export const LoginProvider = ({ children }) => {
       .setExpirationTime(dataExpiracao)
       .sign(new TextEncoder().encode(import.meta.env.VITE_APP_SECRET));
     
+    const {primeiroNome, ultimoNome, cpfOuCnpj} = JSON.stringify(dadosConta);
 
     localStorage.setItem('token', tokenJwt);
-    localStorage.setItem('conta', JSON.stringify(dadosConta));
+    localStorage.setItem('conta', {...primeiroNome, ...ultimoNome, ...cpfOuCnpj});
     setConta(dadosConta);
     setToken(tokenJwt);
   };
@@ -52,7 +53,7 @@ export const LoginProvider = ({ children }) => {
 
 
     try {
-      const result = await jwtVerify(
+      await jwtVerify(
         token,
         new TextEncoder().encode(import.meta.env.VITE_APP_SECRET),
       );
@@ -60,7 +61,7 @@ export const LoginProvider = ({ children }) => {
       return true;
 
     } catch (err) {
-      throw new Error('Token inválido ou expirado');
+      throw new Error('Token inválido ou expirado \n' + err);
     }
   };
 
