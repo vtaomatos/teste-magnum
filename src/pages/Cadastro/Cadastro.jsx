@@ -30,7 +30,6 @@ function Cadastro() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Geração de dados extras
         const { agencia, conta, digito, saldo } = gerarDadosConta();
 
         const newUser = {
@@ -38,12 +37,11 @@ function Cadastro() {
             agencia,
             conta,
             digito,
-            primeiroAcesso: true, // Define como verdadeiro para um novo cadastro
+            primeiroAcesso: true,
             saldo,
         };
 
         try {
-            // Envio para o JSON Server
             const response = await axios.post('http://localhost:3000/contas', newUser);
             console.log('Dados enviados com sucesso:', response.data);
             alert('Cadastro realizado com sucesso!');
@@ -52,6 +50,10 @@ function Cadastro() {
             console.error('Erro ao enviar os dados:', error);
             alert('Erro ao cadastrar a conta. Tente novamente.');
         }
+    };
+
+    const handleVoltar = () => {
+        navigate('/Login');
     };
 
     return (
@@ -119,6 +121,15 @@ function Cadastro() {
                     sx={{ marginTop: 2 }}
                 >
                     Cadastrar
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                    fullWidth
+                    sx={{ marginTop: 2 }}
+                    onClick={handleVoltar}
+                >
+                    Voltar para o Login
                 </Button>
             </form>
         </Box>
