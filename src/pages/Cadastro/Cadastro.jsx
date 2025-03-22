@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { cadastrarUsuario } from '../../services/cadastroUsuarioService';
+
+const gerarDadosConta = () => {
+    const agencia = Math.floor(1000 + Math.random() * 9000).toString();
+    const conta = Math.floor(10000 + Math.random() * 90000).toString();
+    const digito = Math.floor(Math.random() * 10).toString();
+    const saldo = parseFloat((Math.random() * 5000).toFixed(2));
+    return { agencia, conta, digito, saldo };
+};
 
 function Cadastro() {
     const [formData, setFormData] = useState({
@@ -19,14 +27,6 @@ function Cadastro() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const gerarDadosConta = () => {
-        const agencia = Math.floor(1000 + Math.random() * 9000).toString(); // Exemplo: 4 dígitos
-        const conta = Math.floor(10000 + Math.random() * 90000).toString(); // Exemplo: 5 dígitos
-        const digito = Math.floor(Math.random() * 10).toString(); // Exemplo: 1 dígito
-        const saldo = parseFloat((Math.random() * 5000).toFixed(2)); // Exemplo: saldo entre 0 e 5000
-        return { agencia, conta, digito, saldo };
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -42,8 +42,8 @@ function Cadastro() {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/contas', newUser);
-            console.log('Dados enviados com sucesso:', response.data);
+            const response = await cadastrarUsuario(newUser);
+            console.log('Dados enviados com sucesso:', response);
             alert('Cadastro realizado com sucesso!');
             navigate('/Login');
         } catch (error) {
@@ -129,7 +129,7 @@ function Cadastro() {
                     sx={{ marginTop: 2 }}
                     onClick={handleVoltar}
                 >
-                    Voltar para o Login
+                   Login
                 </Button>
             </form>
         </Box>

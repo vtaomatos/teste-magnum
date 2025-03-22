@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import { useLogin } from '../context/LoginContext';
 
@@ -12,7 +13,7 @@ const Protetor = ({ children }) => {
       try {
         const valido = await loginValido()
         setIsValid(valido);
-      } catch (err) {
+      } catch {
         setIsValid(false);
       } finally {
         setIsLoading(false); // Finaliza o carregamento
@@ -23,8 +24,9 @@ const Protetor = ({ children }) => {
   }, [loginValido]);
 
   
+  useCallback(() => {
   if (isLoading) {
-    return <div>Carregando...</div>; // Enquanto valida, evita renderizar ou redirecionar
+    return <div>Carregando...</div>; 
   }
   
   if (!isValid) {
@@ -32,7 +34,12 @@ const Protetor = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  return children;
+}, [isLoading, isValid, logout]);
+
+  return <div>{children}</div>;
+};
+Protetor.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Protetor;

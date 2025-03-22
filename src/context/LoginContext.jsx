@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { jwtVerify, SignJWT } from 'jose';
+import { cadastrarToken } from '../services/cadastrarToken';
 
 export const LoginContext = createContext();
 
@@ -8,7 +9,7 @@ export const LoginProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const inicializarLogin = async () => {
+    const inicializarLogin = () => {
       const tokenSalvo = localStorage.getItem('token');
       const contaSalva = localStorage.getItem('conta');
 
@@ -36,12 +37,13 @@ export const LoginProvider = ({ children }) => {
       .setExpirationTime(dataExpiracao)
       .sign(new TextEncoder().encode(import.meta.env.VITE_APP_SECRET));
     
-    const {primeiroNome, ultimoNome, cpfOuCnpj} = JSON.stringify(dadosConta);
+      const dadosContaEssenciais = (({ primeiroNome, ultimoNome, cpfOuCnpj, id }) => ({ primeiroNome, ultimoNome, cpfOuCnpj, id }))(dadosConta);
 
-    localStorage.setItem('token', tokenJwt);
-    localStorage.setItem('conta', {...primeiroNome, ...ultimoNome, ...cpfOuCnpj});
-    setConta(dadosConta);
-    setToken(tokenJwt);
+      localStorage.setItem('token', tokenJwt);
+      localStorage.setItem('conta', JSON.stringify(dadosContaEssenciais));
+      setConta(dadosConta);
+      setToken(tokenJwt); 
+      await cadastrarToken(dadosContaEssenciais.id, tokenJwt);     
   };
 
   const loginValido = async () => {

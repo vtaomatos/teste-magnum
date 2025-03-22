@@ -11,7 +11,8 @@
       "email": "joao.silva@email.com",
       "senha": "senha123",
       "primeiroAcesso": false,
-      "saldo": 1500
+      "saldo": 1500,
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiMTIzNCIsImNvbnRhIjoiNTY3ODkiLCJkaWdpdG8iOiIwIiwicHJpbWVpcm9Ob21lIjoiSm_Do28iLCJwcmltZWlyb0FjZXNzbyI6ZmFsc2UsImV4cCI6MTc0MjY2ODgyOX0.zYT0I4XqdF6LeZn43142E9gLlX2w4ziugXqJdHKsoB0"
     },
     {
       "id": "2",
@@ -24,7 +25,8 @@
       "email": "maria.oliveira@email.com",
       "senha": "senha456",
       "primeiroAcesso": true,
-      "saldo": 2000
+      "saldo": 2000,
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiNTY3OCIsImNvbnRhIjoiMTIzNDUiLCJkaWdpdG8iOiIxIiwicHJpbWVpcm9Ob21lIjoiTWFyaWEiLCJwcmltZWlyb0FjZXNzbyI6dHJ1ZSwiZXhwIjoxNzA5Mjk2MDAwfQ.3tN3vxxv1Md2d01zzyXrS94og3t4R1EhKuvvWAV9VEM"
     },
     {
       "id": "3",
@@ -37,39 +39,8 @@
       "email": "carlos.souza@email.com",
       "senha": "senha789",
       "primeiroAcesso": false,
-      "saldo": 500
-    }
-  ],
-  "transferencias": [
-    {
-      "id": "1",
-      "idContaRemetente": 1,
-      "idContaDestinatario": 2,
-      "tipoTransacao": "TED",
-      "valor": 300,
-      "dataTransacao": "2023-09-15T10:30:00Z",
-      "saldoRemetente": 1200,
-      "saldoDestinatario": 2300
-    },
-    {
-      "id": "2",
-      "idContaRemetente": 2,
-      "idContaDestinatario": 1,
-      "tipoTransacao": "PIX",
-      "valor": 500,
-      "dataTransacao": "2023-09-16T14:45:00Z",
-      "saldoRemetente": 1800,
-      "saldoDestinatario": 1700
-    },
-    {
-      "id": "3",
-      "idContaRemetente": 3,
-      "idContaDestinatario": 1,
-      "tipoTransacao": "TED",
-      "valor": 100,
-      "dataTransacao": "2023-09-17T09:00:00Z",
-      "saldoRemetente": 400,
-      "saldoDestinatario": 1600
+      "saldo": 500,
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiNDMyMSIsImNvbnRhIjoiNjc4OTAiLCJkaWdpdG8iOiIyIiwicHJpbWVpcm9Ob21lIjoiQ2FybG9zIiwicHJpbWVpcm9BY2Vzc28iOmZhbHNlLCJleHAiOjE3MDkyOTYwMDB9.gKyZTn9V3TzQ6LxdkWr1RoWBquhDGSzROH5eK7QTVe8"
     }
   ]
 }

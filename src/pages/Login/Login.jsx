@@ -5,10 +5,10 @@ import { Input } from '@mui/material';
 import { useLogin } from '../../context/LoginContext';
 
 function Login() {
-  const [agencia, setAgencia] = useState('');
-  const [conta, setConta] = useState('');
-  const [digito, setDigito] = useState('');
-  const [senha, setSenha] = useState('');
+  const [agencia, setAgencia] = useState('1234');
+  const [conta, setConta] = useState('56789');
+  const [digito, setDigito] = useState('0');
+  const [senha, setSenha] = useState('senha123');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { login } = useLogin();
@@ -25,7 +25,7 @@ function Login() {
 
       await login(userData);
       navigate('/home');
-    } catch (err) {
+    } catch {
       setError('E-mail ou senha inválidos');
     }
   };
