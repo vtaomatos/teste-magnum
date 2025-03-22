@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { jwtVerify, SignJWT } from 'jose';
 import { cadastrarToken } from '../services/cadastrarToken';
 
@@ -79,6 +80,9 @@ export const LoginProvider = ({ children }) => {
       {children}
     </LoginContext.Provider>
   );
+};
+LoginProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useLogin = () => {
