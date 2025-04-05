@@ -164,8 +164,4 @@ Este projeto é de código aberto e está licenciado sob os termos da [MIT Licen
 
 ---
 
-Gostou? Dúvidas ou sugestões? Sinta-se à vontade para abrir uma [issue](https://github.com/vtaomatos/teste-magnum/issues)! 🚀  
-
---- 
-
-Posso ajustar algo para ficar ainda mais com a sua cara?
+Gostou? Dúvidas ou sugestões? Sinta-se à vontade para abrir uma [issue](https://github.com/vtaomatos/teste-magnum/issues)! 🚀 
