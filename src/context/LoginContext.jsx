@@ -31,14 +31,14 @@ export const LoginProvider = ({ children }) => {
       agencia: dadosConta.agencia,
       conta: dadosConta.conta,
       digito: dadosConta.digito,
-      primeiroNome: dadosConta.primeiroNome,
-      primeiroAcesso: dadosConta.primeiroAcesso
+      primeiro_nome: dadosConta.primeiro_nome,
+      primeiro_acesso: dadosConta.primeiro_acesso
     })
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime(dataExpiracao)
       .sign(new TextEncoder().encode(import.meta.env.VITE_APP_SECRET));
     
-      const dadosContaEssenciais = (({ primeiroNome, ultimoNome, cpfOuCnpj, id }) => ({ primeiroNome, ultimoNome, cpfOuCnpj, id }))(dadosConta);
+      const dadosContaEssenciais = (({ primeiro_nome, ultimo_nome, cpf_ou_cnpj, id }) => ({ primeiro_nome, ultimo_nome, cpf_ou_cnpj, id }))(dadosConta);
 
       localStorage.setItem('token', tokenJwt);
       localStorage.setItem('conta', JSON.stringify(dadosContaEssenciais));

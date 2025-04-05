@@ -5,7 +5,6 @@ const API_URL = `${import.meta.env.VITE_API_BASE_URL}/contas`;
 export const getUserlogin = async (agencia, conta, digito, senha) => {
     const link = `${API_URL}/?agencia=${encodeURIComponent(agencia)}&conta=${encodeURIComponent(conta)}&digito=${encodeURIComponent(digito)}&senha=${encodeURIComponent(senha)}`;
 
-    console.log('link:', link);
     const response = await axios.get(link);
 
     let user;

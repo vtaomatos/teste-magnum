@@ -8,6 +8,7 @@ import PaginaNaoEncontrada from '../pages/PaginaNaoEncontrada/PaginaNaoEncontrad
 import Protetor from './Protetor';
 import { LoginProvider } from '../context/LoginContext';
 import Logout from '../pages/Logout/Logout';
+import { Pix } from '../pages/Pix/Pix';
 
 function Rotas() {
 
@@ -31,6 +32,11 @@ function Rotas() {
             <Route path="/transferencia" element={
               <Protetor>
                 <Transferencia />
+              </Protetor>
+            } />
+            <Route path="/pix" element={
+              <Protetor>
+                <Pix />
               </Protetor>
             } />
             <Route path="/logout" element={<Logout />} />

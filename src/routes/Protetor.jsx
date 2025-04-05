@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import { useLogin } from '../context/LoginContext';
@@ -24,7 +24,6 @@ const Protetor = ({ children }) => {
   }, [loginValido]);
 
   
-  useCallback(() => {
   if (isLoading) {
     return <div>Carregando...</div>; 
   }
@@ -34,7 +33,6 @@ const Protetor = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-}, [isLoading, isValid, logout]);
 
   return <div>{children}</div>;
 };

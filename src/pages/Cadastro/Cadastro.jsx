@@ -13,9 +13,9 @@ const gerarDadosConta = () => {
 
 function Cadastro() {
     const [formData, setFormData] = useState({
-        primeiroNome: '',
-        ultimoNome: '',
-        cpfOuCnpj: '',
+        primeiro_nome: '',
+        ultimo_nome: '',
+        cpf_ou_cnpj: '',
         email: '',
         senha: '',
     });
@@ -37,7 +37,7 @@ function Cadastro() {
             agencia,
             conta,
             digito,
-            primeiroAcesso: true,
+            primeiro_acesso: true,
             saldo,
         };
 
@@ -73,24 +73,24 @@ function Cadastro() {
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Primeiro Nome"
-                    name="primeiroNome"
-                    value={formData.primeiroNome}
+                    name="primeiro_nome"
+                    value={formData.primeiro_nome}
                     onChange={handleChange}
                     required
                     fullWidth
                 />
                 <TextField
                     label="Último Nome"
-                    name="ultimoNome"
-                    value={formData.ultimoNome}
+                    name="ultimo_nome"
+                    value={formData.ultimo_nome}
                     onChange={handleChange}
                     required
                     fullWidth
                 />
                 <TextField
                     label="CPF ou CNPJ"
-                    name="cpfOuCnpj"
-                    value={formData.cpfOuCnpj}
+                    name="cpf_ou_cnpj"
+                    value={formData.cpf_ou_cnpj}
                     onChange={handleChange}
                     required
                     fullWidth
