@@ -9,6 +9,7 @@ import Protetor from './Protetor';
 import { LoginProvider } from '../context/LoginContext';
 import Logout from '../pages/Logout/Logout';
 import { Pix } from '../pages/Pix/Pix';
+import Layout from '../components/layout';
 
 function Rotas() {
 
@@ -17,26 +18,38 @@ function Rotas() {
       <LoginProvider>
         <Router>
           <Routes>
+            <Route path="/" element={<Layout />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={
-                <Protetor>
+              <Protetor>
+                <Layout>
                   <Home />
-                </Protetor>
+                </Layout>
+              </Protetor>
             } />
+
             <Route path="/extrato" element={
               <Protetor>
-                <Extrato />
+                <Layout>
+                  <Extrato />
+                </Layout>
               </Protetor>
             } />
+
             <Route path="/transferencia" element={
               <Protetor>
-                <Transferencia />
+                <Layout>
+                  <Transferencia />
+                </Layout>
               </Protetor>
             } />
+
             <Route path="/pix" element={
               <Protetor>
-                <Pix />
+                <Layout>
+                  <Pix />
+                </Layout>
               </Protetor>
             } />
             <Route path="/logout" element={<Logout />} />
