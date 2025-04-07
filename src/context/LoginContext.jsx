@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jwtVerify, SignJWT } from 'jose';
-import { cadastrarToken } from '../services/cadastrarToken';
+import { cadastrarToken } from '../services/cadastrarTokenService';
 
 export const LoginContext = createContext();
 
