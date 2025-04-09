@@ -1,96 +1,84 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { ConsultaUsuarioDestinatario } from './consultaUsuarioDestinatarioService';
+import { TIPO_TRANSFERENCIA } from '../constants/constants';
+import { requestApiPost } from './requestService';
+import { CAMINHO_TRANSFERENCIAS } from '../constants/constantsApi';
+import { AtualizarSaldo } from './atualizarSaldoService';
 
-// Endereço base do seu JSON Server
-const API_URL = 'http://localhost:3000';
-
-export const CadastroPix = () => {
-  const [destinatarioId, setDestinatarioId] = useState('');
-  const [nomeDestinatario, setNomeDestinatario] = useState('');
-  const [valor, setValor] = useState('');
-  const [descricao, setDescricao] = useState('');
+export function useCadastrarPix() {
   const [mensagem, setMensagem] = useState('');
+  const [destinatario, setDestinatario] = useState(null);
 
-  const usuario = JSON.parse(localStorage.getItem('usuarioLogado')); // deve conter id, nome e saldo
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!usuario) {
-      setMensagem('Usuário não logado');
-      return;
-    }
-
-    const novaTransferencia = {
-      id_conta_remetente: usuario.id,
-      id_conta_destinatario: Number(destinatarioId),
-      nome_remetente: usuario.nome,
-      nome_destinatario: nomeDestinatario,
-      tipo_transacao: 'PIX',
-      valor: Number(valor),
-      data_transacao: new Date().toISOString(),
-      saldo_remetente: usuario.saldo - valor,
-      saldo_destinatario: null, // pode ser preenchido depois
-      descricao
-    };
+  function cadastrar(documento, valor, descricao) {
 
     try {
-      await axios.post(`${API_URL}/transferencias`, novaTransferencia);
-      setMensagem('Transferência PIX cadastrada com sucesso!');
-      setValor('');
-      setDescricao('');
-      setDestinatarioId('');
-      setNomeDestinatario('');
+
+        const usuario = JSON.parse(localStorage.getItem('token'));
+
+        console.log('usuario', usuario);
+        alert("calma");
+
+        if (!usuario) {
+            throw new Error('Usuário não logado');
+        }
+
+        const dest = ConsultaUsuarioDestinatario(documento);
+        if (!dest) {
+            throw new Error('Destinatário não encontrado');
+        }
+
+        if (usuario.id === dest.id) {
+            throw new Error('Não é possível enviar transferência para você mesmo');
+        }
+
+        if (usuario.saldo < valor) {
+            throw new Error('Saldo insuficiente');
+        }
+
+        if (valor <= 0 || valor < 1 || valor > 10000) {
+            throw new Error('Valor inválido. O valor deve ser maior que 0 e menor que 10.000');
+        }
+
+        if (descricao.length < 5 || descricao.length > 100) {
+            throw new Error('Descrição inválida. A descrição deve ter entre 5 e 100 caracteres');
+        }
+
+        const novaTransferencia = {
+        id_conta_remetente: Number(usuario.id),
+        id_conta_destinatario: Number(dest.id),
+        nome_remetente: usuario.nome,
+        nome_destinatario: dest.nome,
+        tipo_transacao: TIPO_TRANSFERENCIA.PIX,
+        valor: Number(valor),
+        data_transacao: new Date().toISOString(),
+        saldo_remetente: usuario.saldo - valor,
+        descricao
+        };
+
+        try {
+        if (requestApiPost(CAMINHO_TRANSFERENCIAS, novaTransferencia)) {
+            if (AtualizarSaldo(valor)) {
+            setMensagem('Transferência PIX cadastrada com sucesso!');
+            setDestinatario(dest);
+            } else {
+            setMensagem('Erro ao atualizar saldo.');
+            }
+        } else {
+            setMensagem('Erro ao cadastrar transferência.');
+        }
+        } catch (error) {
+        console.error('Erro ao cadastrar PIX:', error);
+        setMensagem('Erro ao cadastrar transferência.');
+        }
     } catch (error) {
-      console.error('Erro ao cadastrar PIX:', error);
-      setMensagem('Erro ao cadastrar transferência.');
+        console.error('Erro ao cadastrar PIX:', error);
+        setMensagem('Erro ao cadastrar transferência.');
     }
+  }
+
+  return {
+    cadastrar,
+    mensagem,
+    destinatario
   };
-
-  return (
-    <div style={{ maxWidth: 400, margin: '0 auto' }}>
-      <h2>Transferência PIX</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>ID do Destinatário:</label>
-          <input
-            type="number"
-            value={destinatarioId}
-            onChange={(e) => setDestinatarioId(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Nome do Destinatário:</label>
-          <input
-            type="text"
-            value={nomeDestinatario}
-            onChange={(e) => setNomeDestinatario(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Valor (R$):</label>
-          <input
-            type="number"
-            step="0.01"
-            value={valor}
-            onChange={(e) => setValor(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Descrição:</label>
-          <input
-            type="text"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-          />
-        </div>
-        <button type="submit">Enviar PIX</button>
-      </form>
-
-      {mensagem && <p style={{ marginTop: '1rem' }}>{mensagem}</p>}
-    </div>
-  );
-};
+}

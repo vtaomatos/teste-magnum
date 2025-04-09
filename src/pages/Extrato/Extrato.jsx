@@ -13,10 +13,8 @@ const Cabecalho = styled.thead`
 `;
 
 const Linha = styled.tr`
-  background-color: ${({ isEntrada, index }) =>
-    isEntrada
-      ? '#d4edda'
-      : index % 2 === 0
+  background-color: ${({ index }) =>
+        index % 2 === 0
       ? '#f1f1f1'
       : '#dcdcdc'};
 `;

@@ -1,5 +1,5 @@
 import { CAMINHO_CONTA } from '../constants/constantsApi';
-import { requestGet } from './requestService';
+import { requestApiGet as requestApiGet } from './requestService';
 
 export const consultaSaldoUsuarioLogado = async () => {
 
@@ -10,7 +10,7 @@ export const consultaSaldoUsuarioLogado = async () => {
 
     const link = `${CAMINHO_CONTA}/?token=${encodeURIComponent(token)}`;
 
-    const response = await requestGet(link);
+    const response = await requestApiGet(link);
 
     switch (response.length)
     {

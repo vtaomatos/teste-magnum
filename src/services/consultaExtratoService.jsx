@@ -1,14 +1,14 @@
 // services/consultaExtratoService.js
 
 import { CAMINHO_CONTA, CAMINHO_TRANSFERENCIAS } from '../constants/constantsApi';
-import { requestGet } from './requestService';
+import { requestApiGet } from './requestService';
 
 export const consultaExtratoService = async (page = 1, limit = 10) => {
   const token = localStorage.getItem('token');
   if (!token) throw new Error('Token não encontrado');
 
   const linkValidarUsuario = `${CAMINHO_CONTA}/?token=${encodeURIComponent(token)}`;
-  const usuarioValidado = await requestGet(linkValidarUsuario);
+  const usuarioValidado = await requestApiGet(linkValidarUsuario);
 
   if (!usuarioValidado || usuarioValidado.length === 0) {
     throw new Error('Dados inválidos');
@@ -24,8 +24,8 @@ export const consultaExtratoService = async (page = 1, limit = 10) => {
   const linkExtratoDestinatario = `${CAMINHO_TRANSFERENCIAS}/?id_conta_destinatario=${idUsuario}`;
 
   const [responseRemetente, responseDestinatario] = await Promise.all([
-    requestGet(linkExtratoRemetente),
-    requestGet(linkExtratoDestinatario)
+    requestApiGet(linkExtratoRemetente),
+    requestApiGet(linkExtratoDestinatario)
   ]);
 
   const extrato = [...responseRemetente, ...responseDestinatario];

@@ -7,12 +7,12 @@
       "digito": "0",
       "primeiro_nome": "João",
       "ultimo_nome": "Silva",
-      "cpf_ou_cnpj": "123.456.789-00",
-      "email": "joao.silva@email.com",
+      "cpf_ou_cnpj": "12345678900",
+      "email": "joaosilvaemailcom",
       "senha": "senha123",
       "primeiro_acesso": false,
       "saldo": 1500,
-      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiMTIzNCIsImNvbnRhIjoiNTY3ODkiLCJkaWdpdG8iOiIwIiwicHJpbWVpcm9fbm9tZSI6Ikpvw6NvIiwicHJpbWVpcm9fYWNlc3NvIjpmYWxzZSwiZXhwIjoxNzQzOTg4OTk3fQ.ga7p5i5gak87_1El8Qp_dKThUYoSErLxQTlVg5-69RM"
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiMTIzNCIsImNvbnRhIjoiNTY3ODkiLCJkaWdpdG8iOiIwIiwicHJpbWVpcm9fbm9tZSI6Ikpvw6NvIiwicHJpbWVpcm9fYWNlc3NvIjpmYWxzZSwiZXhwIjoxNzQ0MTgwMTQxfQ.e8el1xUQ6u8ZodTC3VX2bLvzJwG9xIFICyE53XYRbzs"
     },
     {
       "id": "2",
@@ -21,12 +21,12 @@
       "digito": "1",
       "primeiro_nome": "Maria",
       "ultimo_nome": "Oliveira",
-      "cpf_ou_cnpj": "987.654.321-00",
-      "email": "maria.oliveira@email.com",
+      "cpf_ou_cnpj": "98765432100",
+      "email": "mariaoliveiraemailcom",
       "senha": "senha456",
       "primeiro_acesso": true,
       "saldo": 2000,
-      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiNTY3OCIsImNvbnRhIjoiMTIzNDUiLCJkaWdpdG8iOiIxIiwicHJpbWVpcm9Ob21lIjoiTWFyaWEiLCJwcmltZWlyb0FjZXNzbyI6dHJ1ZSwiZXhwIjoxNzA5Mjk2MDAwfQ.3tN3vxxv1Md2d01zzyXrS94og3t4R1EhKuvvWAV9VEM"
+      "token": "eyJhbGciOiJIUzI1NiJ9eyJhZ2VuY2lhIjoiNTY3OCIsImNvbnRhIjoiMTIzNDUiLCJkaWdpdG8iOiIxIiwicHJpbWVpcm9Ob21lIjoiTWFyaWEiLCJwcmltZWlyb0FjZXNzbyI6dHJ1ZSwiZXhwIjoxNzA5Mjk2MDAwfQ3tN3vxxv1Md2d01zzyXrS94og3t4R1EhKuvvWAV9VEM"
     },
     {
       "id": "3",
@@ -35,12 +35,12 @@
       "digito": "2",
       "primeiro_nome": "Carlos",
       "ultimo_nome": "Souza",
-      "cpf_ou_cnpj": "321.654.987-00",
-      "email": "carlos.souza@email.com",
+      "cpf_ou_cnpj": "32165498700",
+      "email": "carlossouzaemailcom",
       "senha": "senha789",
       "primeiro_acesso": false,
       "saldo": 500,
-      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhZ2VuY2lhIjoiNDMyMSIsImNvbnRhIjoiNjc4OTAiLCJkaWdpdG8iOiIyIiwicHJpbWVpcm9Ob21lIjoiQ2FybG9zIiwicHJpbWVpcm9BY2Vzc28iOmZhbHNlLCJleHAiOjE3MDkyOTYwMDB9.gKyZTn9V3TzQ6LxdkWr1RoWBquhDGSzROH5eK7QTVe8"
+      "token": "eyJhbGciOiJIUzI1NiJ9eyJhZ2VuY2lhIjoiNDMyMSIsImNvbnRhIjoiNjc4OTAiLCJkaWdpdG8iOiIyIiwicHJpbWVpcm9Ob21lIjoiQ2FybG9zIiwicHJpbWVpcm9BY2Vzc28iOmZhbHNlLCJleHAiOjE3MDkyOTYwMDB9gKyZTn9V3TzQ6LxdkWr1RoWBquhDGSzROH5eK7QTVe8"
     }
   ],
   "transferencias": [
@@ -54,7 +54,6 @@
       "valor": 300,
       "data_transacao": "2023-09-15T10:30:00Z",
       "saldo_remetente": 1200,
-      "saldo_destinatario": 2300,
       "descricao": "Pagamento de aluguel"
     },
     {
@@ -67,7 +66,6 @@
       "valor": 500,
       "data_transacao": "2023-09-16T14:45:00Z",
       "saldo_remetente": 1800,
-      "saldo_destinatario": 1700,
       "descricao": "Reembolso compra conjunta"
     },
     {
@@ -80,7 +78,6 @@
       "valor": 100,
       "data_transacao": "2023-09-17T09:00:00Z",
       "saldo_remetente": 400,
-      "saldo_destinatario": 1600,
       "descricao": "Divisão de conta de restaurante"
     },
     {
@@ -93,7 +90,6 @@
       "valor": 150,
       "data_transacao": "2023-09-18T12:15:00Z",
       "saldo_remetente": 1450,
-      "saldo_destinatario": 550,
       "descricao": "Emprestimo pessoal"
     },
     {
@@ -106,7 +102,6 @@
       "valor": 200,
       "data_transacao": "2023-09-19T17:00:00Z",
       "saldo_remetente": 1600,
-      "saldo_destinatario": 750,
       "descricao": "Pagamento de serviço"
     },
     {
@@ -119,7 +114,6 @@
       "valor": 50,
       "data_transacao": "2023-09-20T08:30:00Z",
       "saldo_remetente": 700,
-      "saldo_destinatario": 1650,
       "descricao": "Compra de doces"
     },
     {
@@ -132,7 +126,6 @@
       "valor": 75,
       "data_transacao": "2023-09-21T13:20:00Z",
       "saldo_remetente": 1375,
-      "saldo_destinatario": 1725,
       "descricao": "Presente de aniversário"
     },
     {
@@ -145,7 +138,6 @@
       "valor": 250,
       "data_transacao": "2023-09-22T15:10:00Z",
       "saldo_remetente": 1475,
-      "saldo_destinatario": 1625,
       "descricao": "Pagamento por consultoria"
     },
     {
@@ -158,7 +150,6 @@
       "valor": 90,
       "data_transacao": "2023-09-23T19:45:00Z",
       "saldo_remetente": 610,
-      "saldo_destinatario": 1715,
       "descricao": "Transporte compartilhado"
     },
     {
@@ -171,7 +162,6 @@
       "valor": 180,
       "data_transacao": "2023-09-24T11:05:00Z",
       "saldo_remetente": 1535,
-      "saldo_destinatario": 1655,
       "descricao": "Ajuda com as despesas"
     },
     {
@@ -184,7 +174,6 @@
       "valor": 300,
       "data_transacao": "2023-09-25T10:00:00Z",
       "saldo_remetente": 1355,
-      "saldo_destinatario": 910,
       "descricao": "Curso online compartilhado"
     },
     {
@@ -197,7 +186,6 @@
       "valor": 70,
       "data_transacao": "2023-09-26T18:00:00Z",
       "saldo_remetente": 840,
-      "saldo_destinatario": 1425,
       "descricao": "Compra de ingressos"
     },
     {
@@ -210,7 +198,6 @@
       "valor": 120,
       "data_transacao": "2023-09-27T14:30:00Z",
       "saldo_remetente": 1415,
-      "saldo_destinatario": 960,
       "descricao": "Divisão de supermercado"
     }
   ]

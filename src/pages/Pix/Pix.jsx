@@ -1,37 +1,35 @@
 import { useState } from 'react';
 import { useLogin } from '../../context/LoginContext';
 import { useNavigate } from 'react-router-dom';
-import { CadastroPix } from '../../services/cadastraPixService';
+import { useCadastrarPix } from '../../services/cadastraPixService';
 
 export const Pix = () => {
   const { logout } = useLogin();
   const navigate = useNavigate();
 
-  const [chavePix, setChavePix] = useState('');
-  const [valor, setValor] = useState('');
+  const [chavePix, setChavePix] = useState('43864593832');
+  const [valor, setValor] = useState('100');
+  const [descricao, setDescricao] = useState('Teste');
+  const { mensagem, cadastrar } = useCadastrarPix();
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
-  const handleEnviarPix = (e) => {
-    e.preventDefault();
-    
-    console.log('Enviando Pix para:', chavePix, 'no valor de:', valor);
-    //alert do console.log
-    alert(`Pix enviado para: ${chavePix} no valor de: R$ ${valor}`);
-
-    CadastroPix(chavePix, valor)
-      .then((response) => {
-        console.log('Pix enviado com sucesso:', response);
-        alert('Pix enviado com sucesso!');
-      })
-      .catch((error) => {
-        console.error('Erro ao enviar Pix:', error);
-        alert('Erro ao enviar Pix. Tente novamente.');
-      });
-  };
+function handleEnviarPix() {
+  try {
+    if(cadastrar(chavePix, valor, descricao)) {
+      alert('Transferência enviada com sucesso!');
+    } else {
+        alert('Erro ao enviar transferência');
+    }
+  } catch (error) {
+    console.error('Erro ao enviar transferência:', error,mensagem);
+    alert(`Erro ao enviar transferência: ${mensagem}`);
+  }
+  
+}
 
   return (
     <div style={styles.container}>
@@ -59,6 +57,16 @@ export const Pix = () => {
             required
             min="0.01"
             step="0.01"
+          />
+        </label>
+
+        <label style={styles.label}>
+          Descrição (opcional):
+          <input
+            type="text"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            style={styles.input}
           />
         </label>
 
