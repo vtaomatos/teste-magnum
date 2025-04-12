@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLogin } from '../../context/LoginContext';
 import { useNavigate } from 'react-router-dom';
 import { useCadastrarPix } from '../../services/cadastraPixService';
@@ -7,10 +7,16 @@ export const Pix = () => {
   const { logout } = useLogin();
   const navigate = useNavigate();
 
-  const [chavePix, setChavePix] = useState('43864593832');
+  const [chavePix, setChavePix] = useState('98765432100');
   const [valor, setValor] = useState('100');
   const [descricao, setDescricao] = useState('Teste');
   const { mensagem, cadastrar } = useCadastrarPix();
+
+  useEffect(() => {
+    if (mensagem) {
+      alert(mensagem);
+    }
+  }, [mensagem]);
 
   const handleLogout = () => {
     logout();
@@ -19,16 +25,11 @@ export const Pix = () => {
 
 function handleEnviarPix() {
   try {
-    if(cadastrar(chavePix, valor, descricao)) {
-      alert('Transferência enviada com sucesso!');
-    } else {
-        alert('Erro ao enviar transferência');
-    }
+    cadastrar(chavePix, valor, descricao)
   } catch (error) {
-    console.error('Erro ao enviar transferência:', error,mensagem);
-    alert(`Erro ao enviar transferência: ${mensagem}`);
+    alert(error);
   }
-  
+  alert(mensagem)
 }
 
   return (
@@ -70,7 +71,7 @@ function handleEnviarPix() {
           />
         </label>
 
-        <button type="submit" style={styles.buttonPrimary}>Enviar Pix</button>
+        <button type="button" onClick={handleEnviarPix} style={styles.buttonPrimary}>Enviar Pix</button>
         <button type="button" onClick={handleLogout} style={styles.buttonSecondary}>Logout</button>
       </form>
     </div>
